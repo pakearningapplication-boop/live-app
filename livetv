@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All-in-One Dashboard</title>
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0d1b2a;
+    color:white;
+}
+
+/* Section title */
+.section-title{
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+    margin:20px 0 10px 0;
+}
+
+/* Grid layout for buttons & channels */
+.scroll-container{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:12px;
+    padding:15px;
+    overflow-y:auto;
+    max-height:80vh;
+}
+
+/* Card Design */
+.ad-button, .faucet-card, .channel-card{
+    background:#111;
+    border-radius:12px;
+    text-align:center;
+    padding:12px 8px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.15);
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.ad-button:hover, .faucet-card:hover, .channel-card:hover{
+    transform:scale(1.05);
+}
+
+/* Logo circle */
+.logo-circle{
+    width:60px;
+    height:60px;
+    margin:0 auto 8px auto;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    font-weight:bold;
+    color:white;
+}
+
+/* Site / channel name */
+.site-name, .channel-name{
+    margin-top:4px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* Short text labels for channels */
+.channel-text{
+    font-size:10px;
+    color:#ccc;
+}
+
+/* Player modal */
+#playerModal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    display:none;
+    z-index:9999;
+}
+
+.video-container{
+    width:100%;
+    height:100%;
+}
+.video-container iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+
+/* Close button */
+.closeBtn{
+    position:absolute;
+    top:12px;
+    right:15px;
+    font-size:26px;
+    color:white;
+    background:rgba(0,0,0,0.65);
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    line-height:42px;
+    cursor:pointer;
+    z-index:10000;
+}
+
+/* Loader */
+#loader{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:black;
+    z-index:9998;
+}
+.loader{
+    width:70px;
+    height:70px;
+    border:7px solid #444;
+    border-top:7px solid #00b4ff;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+@keyframes spin{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+/* Responsive */
+@media (max-width:768px){
+    .scroll-container{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (max-width:480px){
+    .scroll-container{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= SOCIAL NETWORK ================= -->
+<div class="section-title">Social Network</div>
+<div class="scroll-container">
+    <div class="ad-button" onclick="window.open('https://www.facebook.com')">
+        <div class="logo-circle" style="background:#1877F2;">F</div>
+        <div class="site-name">Facebook</div>
+    </div>
+    <div class="ad-button" onclick="window.open('https://www.instagram.com')">
+        <div class="logo-circle" style="background:#E1306C;">I</div>
+        <div class="site-name">Instagram</div>
+    </div>
+    <div class="ad-button" onclick="window.open('https://www.youtube.com')">
+        <div class="logo-circle" style="background:#FF0000;">Y</div>
+        <div class="site-name">YouTube</div>
+    </div>
+    <div class="ad-button" onclick="window.open('https://www.twitter.com')">
+        <div class="logo-circle" style="background:#1DA1F2;">T</div>
+        <div class="site-name">Twitter</div>
+    </div>
+</div>
+
+<!-- ================= FAUCET EARNING ================= -->
+<div class="section-title">Crypto Faucet Sites</div>
+<div class="scroll-container">
+    <div class="faucet-card" onclick="window.open('https://claimfreecoins.io/bitcoin-faucet/')">
+        <div class="logo-circle" style="background:#4CAF50;">CF</div>
+        <div class="site-name">Claim Free Coins</div>
+    </div>
+    <div class="faucet-card" onclick="window.open('https://onlyfaucet.com/?r=12796')">
+        <div class="logo-circle" style="background:#FF9800;">OF</div>
+        <div class="site-name">Only Faucet</div>
+    </div>
+    <div class="faucet-card" onclick="window.open('https://keran.co/index.php?ref=131060')">
+        <div class="logo-circle" style="background:#9C27B0;">KE</div>
+        <div class="site-name">Keran</div>
+    </div>
+    <div class="faucet-card" onclick="window.open('https://bagi.co.in/index.php?ref=125294')">
+        <div class="logo-circle" style="background:#03A9F4;">BA</div>
+        <div class="site-name">Bagi</div>
+    </div>
+    <div class="faucet-card" onclick="window.open('https://btcfaucet.in/?r=celfbiznes@gmail.com')">
+        <div class="logo-circle" style="background:#F44336;">BF</div>
+        <div class="site-name">BTC Faucet</div>
+    </div>
+    <div class="faucet-card" onclick="window.open('https://cryptominute.online/?ref=celfbiznes@gmail.com')">
+        <div class="logo-circle" style="background:#2E7D32;">CM</div>
+        <div class="site-name">Crypto Minute</div>
+    </div>
+</div>
+
+<!-- ================= LIVE TV CHANNELS ================= -->
+<div class="section-title">Live TV Channels</div>
+<div class="scroll-container">
+    <div class="channel-card" onclick="openPlayer('//streamcrichd.com/update/star1hi.php')">
+        <div class="channel-img" style="background:#FF5722;">SS</div>
+        <div class="channel-text">Hindi Sports</div>
+        <div class="channel-text">HD Stream</div>
+        <div class="channel-name">Star Sports Hindi</div>
+    </div>
+    <div class="channel-card" onclick="openPlayer('//streamcrichd.com/update/ptv.php')">
+        <div class="channel-img" style="background:#4CAF50;">PT</div>
+        <div class="channel-text">Pakistani Sports</div>
+        <div class="channel-text">HD Stream</div>
+        <div class="channel-name">PTV Sports</div>
+    </div>
+    <div class="channel-card" onclick="openPlayer('//streamcrichd.com/update/willowcricket.php')">
+        <div class="channel-img" style="background:#2196F3;">WC</div>
+        <div class="channel-text">Cricket Channel</div>
+        <div class="channel-text">HD Stream</div>
+        <div class="channel-name">Willow Cricket</div>
+    </div>
+    <div class="channel-card" onclick="openPlayer('//streamcrichd.com/update/skys2.php')">
+        <div class="channel-img" style="background:#9C27B0;">SK</div>
+        <div class="channel-text">Sky Sports</div>
+        <div class="channel-text">HD Stream</div>
+        <div class="channel-name">Sky Sports HD</div>
+    </div>
+    <div class="channel-card" onclick="openPlayer('//streamcrichd.com/update/star.php')">
+        <div class="channel-img" style="background:#FF9800;">SS</div>
+        <div class="channel-text">Star Sports</div>
+        <div class="channel-text">HD Stream</div>
+        <div class="channel-name">Star Sports HD</div>
+    </div>
+    <div class="channel-card" onclick="openPlayer('//streamcrichd.com/update/bt2.php')">
+        <div class="channel-img" style="background:#F44336;">TNT</div>
+        <div class="channel-text">Sports TV</div>
+        <div class="channel-text">HD Stream</div>
+        <div class="channel-name">TNT Sports</div>
+    </div>
+    <div class="channel-card" onclick="openPlayer('//streamcrichd.com/update/tensp.php')">
+        <div class="channel-img" style="background:#03A9F4;">TEN</div>
+        <div class="channel-text">Sports TV</div>
+        <div class="channel-text">HD Stream</div>
+        <div class="channel-name">Ten Sports</div>
+    </div>
+    <div class="channel-card" onclick="openPlayer('//streamcrichd.com/update/espn.php')">
+        <div class="channel-img" style="background:#607D8B;">ES</div>
+        <div class="channel-text">ESPN Channel</div>
+        <div class="channel-text">HD Stream</div>
+        <div class="channel-name">Sony ESPN</div>
+    </div>
+    <div class="channel-card" onclick="openPlayer('//streamcrichd.com/update/sscricket.php')">
+        <div class="channel-img" style="background:#795548;">SS</div>
+        <div class="channel-text">Super Sports</div>
+        <div class="channel-text">HD Stream</div>
+        <div class="channel-name">Super Sports</div>
+    </div>
+</div>
+
+<!-- ================= PLAYER MODAL ================= -->
+<div id="playerModal">
+    <div id="loader"><div class="loader"></div></div>
+    <div class="closeBtn" onclick="closePlayer()">&#10005;</div>
+    <div class="video-container">
+        <iframe id="liveFrame" src="" allowfullscreen allow="autoplay; fullscreen"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-presentation"></iframe>
+    </div>
+</div>
+
+<script>
+function openPlayer(url){
+    const modal = document.getElementById("playerModal");
+    const frame = document.getElementById("liveFrame");
+    const loader = document.getElementById("loader");
+    modal.style.display = "block";
+    loader.style.display = "flex";
+
+    frame.src = url;
+    frame.onload = function(){ loader.style.display = "none"; };
+
+    if(modal.requestFullscreen){ modal.requestFullscreen(); }
+    else if(modal.webkitRequestFullscreen){ modal.webkitRequestFullscreen(); }
+
+    if(screen.orientation && screen.orientation.lock){
+        screen.orientation.lock('landscape').catch(function(){});
+    }
+
+    history.pushState({player:true},"");
+}
+
+function closePlayer(){
+    const modal = document.getElementById("playerModal");
+    const frame = document.getElementById("liveFrame");
+    frame.src = "";
+    modal.style.display = "none";
+
+    if(document.fullscreenElement){ document.exitFullscreen(); }
+    if(screen.orientation && screen.orientation.unlock){ screen.orientation.unlock(); }
+}
+
+window.onpopstate = function(){
+    const modal = document.getElementById("playerModal");
+    if(modal.style.display === "block"){ closePlayer(); }
+};
+</script>
+
+</body>
+</html>
