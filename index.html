@@ -1,8 +1,7 @@
-<!doctype html>
-
-
-
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
@@ -64,54 +63,67 @@ body{
     font-size:12px;
     font-weight:bold;
 }
+
+/* Timer */
+.timer-box{
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    margin-top:20px;
+}
 </style>
 
 <script>
-function openLink(directUrl){
 
-    // 1️⃣ Ad link new tab mein open hoga
-    window.open(
-        "https://www.effectivegatecpm.com/k0273mzh?key=82d7970a940554cdf29e8b29ae5baac0",
-        "_blank"
-    );
+// ⏱ TIMER SYSTEM
+var counter = 10; // yahan seconds change kar sakte ho
 
-    // 2️⃣ Current page direct link par redirect hogi
-    setTimeout(function(){
-        window.location.href = directUrl;
-    }, 400);
+function startTimer(){
+    var interval = setInterval(function(){
+        document.getElementById("timer").innerHTML = counter;
+        counter--;
+
+        if(counter < 0){
+            clearInterval(interval);
+
+            // MIT App Inventor ko signal bhejna
+            window.AppInventor.setWebViewString("open_screen2");
+        }
+
+    },1000);
 }
+
+// 🟢 Button Click System
+function openScreenFromButton(buttonName){
+    window.AppInventor.setWebViewString("button_" + buttonName);
+}
+
 </script>
+</head>
 
+<body onload="startTimer()">
 
-
+<div class="timer-box">
+Timer: <span id="timer">10</span>
+</div>
 
 <div class="section-title">Crypto Faucet Sites</div>
 
 <div class="horizontal-scroll">
 
-<div class="faucet-card" onclick="openLink('https://claimfreecoins.io/bitcoin-faucet/')">
+<div class="faucet-card" onclick="openScreenFromButton('claim')">
     <div class="logo-circle" style="background:#FF5722;">CF</div>
     <div class="site-name">Claim</div>
 </div>
 
-<div class="faucet-card" onclick="openLink('https://onlyfaucet.com/?r=12796')">
+<div class="faucet-card" onclick="openScreenFromButton('only')">
     <div class="logo-circle" style="background:#03A9F4;">OF</div>
     <div class="site-name">Only</div>
 </div>
 
-<div class="faucet-card" onclick="openLink('https://keran.co/index.php?ref=131060')">
+<div class="faucet-card" onclick="openScreenFromButton('keran')">
     <div class="logo-circle" style="background:#9C27B0;">KF</div>
     <div class="site-name">Keran</div>
-</div>
-
-<div class="faucet-card" onclick="openLink('https://bagi.co.in/index.php?ref=125294')">
-    <div class="logo-circle" style="background:#4CAF50;">BF</div>
-    <div class="site-name">Bagi</div>
-</div>
-
-<div class="faucet-card" onclick="openLink('https://btcfaucet.in/?r=celfbiznes@gmail.com')">
-    <div class="logo-circle" style="background:#FF9800;">BTC</div>
-    <div class="site-name">BTC</div>
 </div>
 
 </div>
@@ -120,17 +132,17 @@ function openLink(directUrl){
 
 <div class="horizontal-scroll">
 
-<div class="faucet-card" onclick="openLink('https://pakearningapplication-boop.github.io/tv/')">
+<div class="faucet-card" onclick="openScreenFromButton('sports')">
     <div class="logo-circle" style="background:#FF5722;">SP</div>
     <div class="site-name">Sports Tv</div>
 </div>
 
-<div class="faucet-card" onclick="openLink('https://kpkexchanger.blogspot.com/')">
+<div class="faucet-card" onclick="openScreenFromButton('cartoon')">
     <div class="logo-circle" style="background:#4CAF50;">CR</div>
     <div class="site-name">Cartoon Tv</div>
 </div>
 
 </div>
 
-
-</!doctype>
+</body>
+</html>
