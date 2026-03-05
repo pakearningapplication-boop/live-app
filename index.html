@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,33 @@ body{
     margin:0;
     font-family:Arial, sans-serif;
     background:#f5f5f5;
+}
+
+/* SEARCH BAR */
+.search-bar{
+    display:flex;
+    margin:15px;
+    border-radius:30px;
+    overflow:hidden;
+    box-shadow:0 3px 8px rgba(0,0,0,0.2);
+    background:white;
+}
+
+.search-bar input{
+    flex:1;
+    padding:12px 15px;
+    border:none;
+    outline:none;
+    font-size:15px;
+}
+
+.search-bar button{
+    padding:0 18px;
+    border:none;
+    background:linear-gradient(45deg,#2196F3,#00BCD4);
+    color:white;
+    font-size:18px;
+    cursor:pointer;
 }
 
 /* Section Title */
@@ -26,7 +53,7 @@ body{
     padding:15px;
 }
 
-/* Card */
+/* Card Design */
 .faucet-card{
     background:#ffffff;
     border-radius:12px;
@@ -43,7 +70,7 @@ body{
     transform:scale(1.05);
 }
 
-/* Circle */
+/* Logo Circle */
 .logo-circle{
     width:60px;
     height:60px;
@@ -57,87 +84,181 @@ body{
     color:white;
 }
 
-/* Name */
+/* Site Name */
 .site-name{
     margin-top:8px;
     font-size:12px;
     font-weight:bold;
 }
-
-/* Timer */
-.timer-box{
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-    margin-top:20px;
-}
 </style>
 
 <script>
 
-// ⏱ TIMER SYSTEM
-var counter = 10; // yahan seconds change kar sakte ho
+/* SEARCH FUNCTION */
+function searchNow(){
+    var query = document.getElementById("searchInput").value.trim();
 
-function startTimer(){
-    var interval = setInterval(function(){
-        document.getElementById("timer").innerHTML = counter;
-        counter--;
-
-        if(counter < 0){
-            clearInterval(interval);
-
-            // MIT App Inventor ko signal bhejna
-            window.AppInventor.setWebViewString("open_screen2");
+    if(query !== ""){
+        if(!query.startsWith("http")){
+            query = "https://www.google.com/search?q=" + encodeURIComponent(query);
         }
-
-    },1000);
+        window.location.href = query;
+    }
 }
 
-// 🟢 Button Click System
-function openScreenFromButton(buttonName){
-    window.AppInventor.setWebViewString("button_" + buttonName);
+/* ENTER KEY SEARCH */
+function checkEnter(event){
+    if(event.key === "Enter"){
+        searchNow();
+    }
+}
+
+/* OPEN LINK SAME SCREEN */
+function openLink(url){
+    window.location.href = url;
 }
 
 </script>
 </head>
 
-<body onload="startTimer()">
+<body>
 
-<div class="timer-box">
-Timer: <span id="timer">10</span>
+<!-- SEARCH BAR -->
+<div class="search-bar">
+    <input type="text" id="searchInput"
+           placeholder="Search or enter URL"
+           onkeypress="checkEnter(event)">
+    <button onclick="searchNow()">🔍</button>
 </div>
 
+
+<!-- ================== CRYPTO FAUCETS ================== -->
 <div class="section-title">Crypto Faucet Sites</div>
 
 <div class="horizontal-scroll">
 
-<div class="faucet-card" onclick="openScreenFromButton('claim')">
+<div class="faucet-card" onclick="openLink('https://claimfreecoins.io/bitcoin-faucet/')">
     <div class="logo-circle" style="background:#FF5722;">CF</div>
     <div class="site-name">Claim</div>
 </div>
 
-<div class="faucet-card" onclick="openScreenFromButton('only')">
+<div class="faucet-card" onclick="openLink('https://onlyfaucet.com/?r=12796')">
     <div class="logo-circle" style="background:#03A9F4;">OF</div>
     <div class="site-name">Only</div>
 </div>
 
-<div class="faucet-card" onclick="openScreenFromButton('keran')">
+<div class="faucet-card" onclick="openLink('https://keran.co/index.php?ref=131060')">
     <div class="logo-circle" style="background:#9C27B0;">KF</div>
     <div class="site-name">Keran</div>
 </div>
 
+<div class="faucet-card" onclick="openLink('https://bagi.co.in/index.php?ref=125294')">
+    <div class="logo-circle" style="background:#4CAF50;">BF</div>
+    <div class="site-name">Bagi</div>
 </div>
 
+<div class="faucet-card" onclick="openLink('https://btcfaucet.in/?r=celfbiznes@gmail.com')">
+    <div class="logo-circle" style="background:#FF9800;">BTC</div>
+    <div class="site-name">BTC</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://cryptominute.online/?ref=celfbiznes@gmail.com')">
+    <div class="logo-circle" style="background:#E91E63;">CM</div>
+    <div class="site-name">Crypto</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://earnsolana.xyz/?r=6224')">
+    <div class="logo-circle" style="background:#009688;">ES</div>
+    <div class="site-name">Solana</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://faucet.cryptojobss.com/r/FslsXsbS5L')">
+    <div class="logo-circle" style="background:#3F51B5;">CJ</div>
+    <div class="site-name">Jobss</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://monsterfaucet.com/?ref=28127')">
+    <div class="logo-circle" style="background:#00BCD4;">MF</div>
+    <div class="site-name">Monster</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://mix-crypto.com/litecoin/?r=celfbiznes@gmail.com')">
+    <div class="logo-circle" style="background:#795548;">MC</div>
+    <div class="site-name">Mix</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://freeltc.fun/?r=4265')">
+    <div class="logo-circle" style="background:#8BC34A;">FL</div>
+    <div class="site-name">FreeLTC</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://altcryp.com/?r=14944')">
+    <div class="logo-circle" style="background:#F44336;">AC</div>
+    <div class="site-name">AltCryp</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://claimcrypto.in/?r=2987')">
+    <div class="logo-circle" style="background:#673AB7;">CC</div>
+    <div class="site-name">ClaimCrypto</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://99faucet.com/?r=18552')">
+    <div class="logo-circle" style="background:#FBC02D;">99</div>
+    <div class="site-name">99Faucet</div>
+</div>
+
+</div>
+
+
+<!-- ================== MORE OPTIONS ================== -->
+<div class="section-title">More Options</div>
+
+<div class="horizontal-scroll">
+
+<div class="faucet-card" onclick="openLink('https://pakmathsolver.blogspot.com/2023/09/full-audio-quran.html')">
+    <div class="logo-circle" style="background:#4CAF50;">QC</div>
+    <div class="site-name">Listen Quran</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://pakmobsite.blogspot.com/2026/02/blog-post_27.html')">
+    <div class="logo-circle" style="background:#03A9F4;">KT</div>
+    <div class="site-name">Khyber Tv</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://paktubeupdates.blogspot.com/2023/11/ig-fonts-generator-raquo-feed.html')">
+    <div class="logo-circle" style="background:#9C27B0;">SF</div>
+    <div class="site-name">Stylish Fonts</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://kpkexchanger.blogspot.com/2026/02/multi-language-translator-body-font.html')">
+    <div class="logo-circle" style="background:#FF9800;">TR</div>
+    <div class="site-name">Translator</div>
+</div>
+
+</div>
+
+
+<!-- ================== LIVE TV ================== -->
 <div class="section-title">Watch Live TV</div>
 
 <div class="horizontal-scroll">
 
-<div class="faucet-card" onclick="openScreenFromButton('sports')">
+<div class="faucet-card" onclick="openLink('https://pakearningapplication-boop.github.io/tv/')">
     <div class="logo-circle" style="background:#FF5722;">SP</div>
     <div class="site-name">Sports Tv</div>
 </div>
 
-<div class="faucet-card" onclick="openScreenFromButton('cartoon')">
+<div class="faucet-card" onclick="openLink('https://kpkexchanger.blogspot.com/2026/02/body-margin0-font-familyarial-sans_57.html')">
+    <div class="logo-circle" style="background:#03A9F4;">RE</div>
+    <div class="site-name">Religious Tv</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://kpkexchanger.blogspot.com/2026/02/body-margin0-font-familyarial-sans_1.html')">
+    <div class="logo-circle" style="background:#9C27B0;">UN</div>
+    <div class="site-name">Urdu News</div>
+</div>
+
+<div class="faucet-card" onclick="openLink('https://kpkexchanger.blogspot.com/2026/02/body-margin0-font-familyarial-sans.html')">
     <div class="logo-circle" style="background:#4CAF50;">CR</div>
     <div class="site-name">Cartoon Tv</div>
 </div>
